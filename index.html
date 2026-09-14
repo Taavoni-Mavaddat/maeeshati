@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>خدمات اعضا و افراد عادی گروه مردمی مودت اردبیل</title>
+<style>
+/* ====== طراحی جدید؛ ساختار و منطق اصلی حفظ شده ====== */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+:root{
+    --bg:#f3f7fb;
+    --card:rgba(255,255,255,.88);
+    --card-solid:#fff;
+    --text:#17202a;
+    --muted:#6b7280;
+    --primary:#087f8c;
+    --primary-2:#12a7a0;
+    --accent:#f59e0b;
+    --danger:#dc3b3b;
+    --border:rgba(21,75,85,.12);
+    --shadow:0 12px 35px rgba(31,55,72,.10);
+    --shadow-hover:0 20px 50px rgba(31,55,72,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+    font-family:"Vazirmatn","B Nazanin","Nazanin","Tahoma",sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(18,167,160,.10), transparent 28%),
+        radial-gradient(circle at 90% 80%, rgba(245,158,11,.09), transparent 26%),
+        var(--bg);
+    color:var(--text);
+    display:flex;
+    justify-content:center;
+    overflow-x:hidden;
+    line-height:1.8;
+}
+#networkCanvas{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    z-index:-1;
+    background:
+        linear-gradient(135deg,rgba(255,255,255,.55),rgba(238,247,250,.55));
+    opacity:.72;
+}
+.app-wrapper{
+    max-width:1100px;
+    width:100%;
+    padding:24px 18px 50px;
+    margin:0 auto;
+}
+.top-bar{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:22px;
+    align-items:stretch;
+}
+.title-box,.info-box,.section-card,.cart-card,.form-card,.invoice-card{
+    background:var(--card);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+}
+.title-box{
+    position:relative;
+    overflow:hidden;
+    border-radius:22px;
+    padding:18px 22px;
+    flex:1 1 450px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:transform .35s ease,box-shadow .35s ease;
+}
+.title-box::before{
+    content:"";
+    position:absolute;
+    width:170px;height:170px;
+    border-radius:50%;
+    background:rgba(18,167,160,.12);
+    top:-100px;right:-60px;
+}
+.title-box::after{
+    content:"";
+    position:absolute;
+    left:0;top:0;
+    width:5px;height:100%;
+    background:linear-gradient(180deg,var(--primary-2),var(--accent));
+}
+.title-box:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.title-text{
+    position:relative;
+    z-index:1;
+    font-size:1.35rem;
+    font-weight:800;
+    text-align:center;
+    letter-spacing:-.3px;
+}
+.info-box{
+    flex:1 1 280px;
+    border-radius:22px;
+    padding:14px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    font-size:.88rem;
+}
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:3px 0;
+}
+.info-row span:last-child{
+    font-weight:700;
+    color:var(--primary);
+}
+.main-layout{display:flex;flex-direction:column;gap:18px}
+.section-card,.cart-card,.form-card,.invoice-card{
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:0;
+    transition:transform .3s ease,box-shadow .3s ease;
+}
+.section-card:hover,.cart-card:hover,.form-card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-hover);
+}
+.section-card h2,.form-card h2,.cart-header h2{
+    font-size:1.12rem;
+    font-weight:800;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+.section-card h2::before,.form-card h2::before,.cart-header h2::before{
+    content:"";
+    width:9px;height:9px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary-2),var(--accent));
+    box-shadow:0 0 0 5px rgba(18,167,160,.08);
+}
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:14px;
+}
+.product-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:17px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.76);
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,border-color .3s ease;
+}
+.product-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(18,167,160,.07),transparent 45%,rgba(245,158,11,.05));
+    pointer-events:none;
+}
+.product-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 16px 32px rgba(31,55,72,.14);
+    border-color:rgba(18,167,160,.35);
+}
+.product-image{
+    position:relative;
+    width:100%;
+    height:135px;
+    border-radius:13px;
+    background:#f0f4f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    display:block;
+    transition:transform .35s ease;
+}
+.product-card:hover .product-image img{
+    transform:scale(1.06);
+}
+.price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    font-size:.84rem;
+}
+.price-original{text-decoration:line-through;color:#a0a5ad}
+.price-discount{color:var(--danger);font-weight:800}
+.product-actions{margin-top:4px;display:flex;gap:7px}
+.btn{
+    border:0;
+    border-radius:11px;
+    padding:9px 12px;
+    font-family:inherit;
+    font-size:.84rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+}
+.btn:hover{filter:brightness(1.04);transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn-add{
+    background:linear-gradient(135deg,#0a948f,#087f8c);
+    color:#fff;
+    flex:1;
+    box-shadow:0 7px 18px rgba(8,127,140,.18);
+}
+.btn-small{background:#edf2f5;color:#27323a;min-width:34px;padding:6px 9px}
+.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cart-items{
+    border-top:1px solid var(--border);
+    padding-top:11px;
+    margin-top:4px;
+}
+.cart-item-row{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:7px;
+    align-items:center;
+    font-size:.84rem;
+    margin-bottom:7px;
+    padding:8px 4px;
+    border-radius:10px;
+    transition:background .2s ease;
+}
+.cart-item-row:hover{background:rgba(8,127,140,.045)}
+.cart-item-name{font-weight:600}
+.cart-item-qty{display:flex;align-items:center;gap:5px}
+.cart-summary{
+    border-top:1px solid var(--border);
+    margin-top:10px;
+    padding-top:11px;
+    font-size:.9rem;
+}
+.cart-summary-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:6px;
+}
+.cart-summary-row:last-child{
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed rgba(8,127,140,.2);
+    font-weight:800;
+    color:var(--primary);
+}
+.btn-order{
+    margin-top:13px;
+    width:100%;
+    background:linear-gradient(135deg,#087f8c,#12a7a0);
+    color:#fff;
+    box-shadow:0 10px 22px rgba(8,127,140,.20);
+}
+.btn-order:disabled{background:#b8c3c8;cursor:not-allowed;box-shadow:none}
+.form-row{display:flex;flex-direction:column;margin-bottom:11px;font-size:.85rem}
+.form-row label{margin-bottom:5px;font-weight:600}
+.form-row input,.form-row textarea{
+    border-radius:11px;
+    border:1px solid #d7dfe5;
+    background:rgba(255,255,255,.8);
+    padding:9px 11px;
+    font-family:inherit;
+    font-size:.85rem;
+    outline:none;
+    transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.form-row input:focus,.form-row textarea:focus{
+    border-color:rgba(8,127,140,.65);
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(8,127,140,.08);
+}
+.form-row textarea{resize:vertical}
+.form-note{font-size:.8rem;color:var(--muted);background:#f7fafb;border-radius:10px;padding:8px 10px}
+.invoice-card{
+    display:none;
+    border:1px solid rgba(8,127,140,.16);
+}
+.invoice-header{text-align:center;margin-bottom:12px}
+.invoice-header h2{font-size:1.15rem;margin-bottom:5px;font-weight:800}
+.invoice-info{font-size:.85rem;margin-bottom:10px}
+.invoice-info-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:5px;
+    padding-bottom:4px;
+    border-bottom:1px dashed rgba(0,0,0,.06);
+}
+.invoice-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:10px;font-size:.8rem;overflow:hidden;border-radius:10px}
+.invoice-table th,.invoice-table td{
+    border:1px solid #dce3e7;
+    padding:6px 7px;
+    text-align:center;
+}
+.invoice-table th{background:#f1f7f8;font-weight:800}
+.invoice-footer{margin-top:10px;font-size:.85rem}
+.invoice-footer-strong{margin-top:11px;font-weight:800;font-size:.9rem;color:var(--primary)}
+.btn-pdf{
+    margin-top:13px;
+    width:100%;
+    background:linear-gradient(135deg,#f59e0b,#f97316);
+    color:#fff;
+    box-shadow:0 9px 20px rgba(245,158,11,.18);
+}
+@media (max-width:768px){
+    .app-wrapper{padding:16px 12px 35px}
+    .title-text{font-size:1.15rem}
+    .cart-item-row{grid-template-columns:2fr 1fr 1fr}
+    .cart-item-row .cart-item-total{display:none}
+}
+@media (max-width:480px){
+    .product-grid{grid-template-columns:1fr}
+    .section-card,.cart-card,.form-card,.invoice-card{padding:15px}
+    .info-box{font-size:.82rem}
+}
+
+/* کنترل تعداد محصول مثل فروشگاه‌های مدرن */
+.product-actions{
+    align-items:center;
+}
+.product-quantity{
+    min-width:38px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#f7fafb;
+    font-weight:800;
+    color:var(--text);
+}
+.product-plus,.product-minus{
+    width:36px;
+    height:36px;
+    padding:0 !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.15rem !important;
+    font-weight:800 !important;
+}
+.btn-remove{
+    height:36px;
+    padding:0 11px !important;
+    background:#fff0f0;
+    color:#c62828;
+    border:1px solid rgba(198,40,40,.12);
+}
+.btn-remove:hover{
+    background:#ffe4e4;
+    filter:none;
+}
+
+/* افکت دنبال‌کننده‌ی نرم موس */
+.cursor-glow{
+    position:fixed;
+    width:230px;height:230px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9999;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(18,167,160,.10),rgba(18,167,160,0) 68%);
+    mix-blend-mode:multiply;
+    transition:opacity .25s ease;
+}
+
+/* ===== PDF تمیز و سفید — اصلاح شده برای نمایش صحیح فاکتور ===== */
+@media print {
+    @page {
+        size: A4;
+        margin: 16mm;
+    }
+    html, body {
+        width: 100% !important;
+        min-height: 100% !important;
+        background: #fff !important;
+        color: #111 !important;
+        font-family: "Vazirmatn", "B Nazanin", "Nazanin", "Tahoma", sans-serif !important;
+        overflow: visible !important;
+    }
+    /* مخفی کردن همه چیز به جز فاکتور */
+    #networkCanvas,
+    .cursor-glow,
+    .top-bar,
+    .section-card,
+    .cart-card,
+    .form-card,
+    .btn-pdf,
+    .product-grid,
+    .product-card {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    .app-wrapper {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+    .main-layout {
+        display: block !important;
+        gap: 0 !important;
+    }
+    /* نمایش اجباری فاکتور */
+    .invoice-card {
+        display: block !important;
+        visibility: visible !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: none !important;
+        background: #fff !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-family: "Vazirmatn", "B Nazanin", "Nazanin", "Tahoma", sans-serif !important;
+        color: #111 !important;
+        page-break-inside: avoid;
+    }
+    .invoice-header {
+        text-align: center;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+    .invoice-header h2 {
+        font-size: 20px !important;
+        color: #111 !important;
+        margin-bottom: 6px !important;
+    }
+    .invoice-header div {
+        font-size: 13px !important;
+        color: #333 !important;
+    }
+    .invoice-info {
+        font-size: 13px !important;
+        margin-bottom: 16px;
+        display: block !important;
+    }
+    .invoice-info-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        border-bottom: 1px solid #eee !important;
+        padding: 5px 0 !important;
+        color: #111 !important;
+        margin-bottom: 0 !important;
+    }
+    .invoice-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border-spacing: 0 !important;
+        font-size: 12px !important;
+        display: table !important;
+        margin-top: 12px !important;
+    }
+    .invoice-table thead {
+        display: table-header-group !important;
+    }
+    .invoice-table tbody {
+        display: table-row-group !important;
+    }
+    .invoice-table tr {
+        display: table-row !important;
+    }
+    .invoice-table th,
+    .invoice-table td {
+        border: 1px solid #bbb !important;
+        padding: 7px !important;
+        background: #fff !important;
+        color: #111 !important;
+        text-align: center !important;
+        display: table-cell !important;
+    }
+    .invoice-table th {
+        background: #f5f5f5 !important;
+        font-weight: 800 !important;
+    }
+    .invoice-footer,
+    .invoice-footer-strong {
+        color: #111 !important;
+        font-size: 13px !important;
+        display: block !important;
+        margin-top: 12px !important;
+    }
+    .invoice-footer-strong {
+        font-weight: 800 !important;
+        font-size: 14px !important;
+        margin-top: 14px !important;
+    }
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
+</style>
+</head>
+<body>
+<div class="cursor-glow" id="cursorGlow"></div>
+<canvas id="networkCanvas"></canvas>
+<div class="app-wrapper">
+    <div class="top-bar">
+        <div class="title-box">
+            <div class="title-text">
+                خدمات اعضا و افراد عادی گروه مردمی مودت اردبیل
+            </div>
+        </div>
+        <div class="info-box">
+            <div class="info-row">
+                <span>تاریخ:</span>
+                <span id="liveDate"></span>
+            </div>
+            <div class="info-row">
+                <span>ساعت:</span>
+                <span id="liveTime"></span>
+            </div>
+            <div class="info-row">
+                <span>مهلت ثبت سفارش:</span>
+                <span id="countdown"></span>
+            </div>
+        </div>
+    </div>
+    <div class="main-layout">
+        <!-- محصولات -->
+        <div class="section-card">
+            <h2>محصولات روغن</h2>
+            <div class="product-grid" id="oilProducts"></div>
+        </div>
+        <div class="section-card">
+            <h2>محصولات ماست</h2>
+            <div class="product-grid" id="yogurtProducts"></div>
+        </div>
+        <div class="section-card">
+            <h2>محصولات کیک</h2>
+            <div class="product-grid" id="cakeProducts"></div>
+        </div>
+        <!-- سبد خرید -->
+        <div class="cart-card">
+            <div class="cart-header">
+                <h2>سبد خرید</h2>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-summary">
+                <div class="cart-summary-row">
+                    <span>مجموع قیمت اصلی:</span>
+                    <span id="sumOriginal">۰ تومان</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>مجموع تخفیف:</span>
+                    <span id="sumDiscount">۰ تومان</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>مبلغ نهایی قابل پرداخت:</span>
+                    <span id="sumFinal">۰ تومان</span>
+                </div>
+            </div>
+        </div>
+        <!-- فرم اطلاعات مشتری -->
+        <div class="form-card">
+            <h2>اطلاعات مشتری و ثبت سفارش</h2>
+            <div class="form-row">
+                <label>نام و نام خانوادگی:</label>
+                <input type="text" id="customerName">
+            </div>
+            <div class="form-row">
+                <label>شماره موبایل:</label>
+                <input type="tel" id="customerMobile" placeholder="مثال: ۰۹۱۲۱۲۳۴۵۶۷">
+            </div>
+            <div class="form-row">
+                <label>کد ملی (۱۰ رقمی):</label>
+                <input type="text" id="customerNationalId" maxlength="10">
+            </div>
+            <div class="form-row">
+                <label>آدرس تحویل:</label>
+                <textarea id="customerAddress" readonly>حسینیه مودت</textarea>
+            </div>
+            <div class="form-note">
+                محل تحویل: حسینیه مودت – زمان تحویل: سه‌شنبه ساعت ۱۷:۰۰
+            </div>
+            <button class="btn btn-order" id="btnSubmitOrder">ثبت سفارش و صدور فاکتور</button>
+        </div>
+        <!-- فاکتور -->
+        <div class="invoice-card" id="invoiceCard">
+            <div class="invoice-header">
+                <h2>فاکتور فروش</h2>
+                <div>خدمات اعضا و افراد عادی گروه مردمی مودت اردبیل</div>
+            </div>
+            <div class="invoice-info">
+                <div class="invoice-info-row">
+                    <span>شماره فاکتور:</span>
+                    <span id="invoiceNumber"></span>
+                </div>
+                <div class="invoice-info-row">
+                    <span>نام مشتری:</span>
+                    <span id="invoiceCustomerName"></span>
+                </div>
+                <div class="invoice-info-row">
+                    <span>شماره موبایل:</span>
+                    <span id="invoiceCustomerMobile"></span>
+                </div>
+                <div class="invoice-info-row">
+                    <span>کد ملی:</span>
+                    <span id="invoiceCustomerNationalId"></span>
+                </div>
+                <div class="invoice-info-row">
+                    <span>تاریخ ثبت سفارش:</span>
+                    <span id="invoiceDate"></span>
+                </div>
+                <div class="invoice-info-row">
+                    <span>ساعت ثبت سفارش:</span>
+                    <span id="invoiceTime"></span>
+                </div>
+                <div class="invoice-info-row">
+                    <span>آدرس تحویل:</span>
+                    <span>حسینیه مودت</span>
+                </div>
+                <div class="invoice-info-row">
+                    <span>زمان تحویل:</span>
+                    <span>سه‌شنبه ساعت ۱۷:۰۰</span>
+                </div>
+            </div>
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>نام محصول</th>
+                        <th>تعداد</th>
+                        <th>قیمت اصلی (تومان)</th>
+                        <th>قیمت فروش (تومان)</th>
+                        <th>سود (تومان)</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceTableBody"></tbody>
+            </table>
+            <div class="invoice-footer">
+                <div>مجموع سود: <span id="invoiceTotalProfit"></span> تومان</div>
+            </div>
+            <div class="invoice-footer-strong" id="invoiceStrongText"></div>
+            <button class="btn btn-pdf" id="btnPdf" onclick="printInvoicePDF()">ذخیره فاکتور به صورت PDF</button>
+        </div>
+    </div>
+</div>
+<script>
+// افکت شبکه‌ای RGB روشن (نسبتاً سبک، ترکیب حالت ۱ و ۲)
+const canvas = document.getElementById("networkCanvas");
+const ctx = canvas.getContext("2d");
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+let nodes = [];
+let mouse = { x: null, y: null };
+window.addEventListener("mousemove", function(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+window.addEventListener("mouseleave", function() {
+    mouse.x = null;
+    mouse.y = null;
+});
+function Node(x, y) {
+    this.x = x;
+    this.y = y;
+    this.vx = (Math.random() - 0.5) * 0.3;
+    this.vy = (Math.random() - 0.5) * 0.3;
+    this.radius = 2 + Math.random() * 1.5;
+    this.colorPhase = Math.random() * 360;
+}
+Node.prototype.update = function() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    if (mouse.x !== null) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+            this.x += (dx / dist) * 0.6;
+            this.y += (dy / dist) * 0.6;
+        }
+    }
+    this.colorPhase += 0.3;
+};
+Node.prototype.draw = function() {
+    const hue = (this.colorPhase % 360);
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${hue}, 80%, 60%, 0.9)`;
+    ctx.fill();
+};
+function initNodes() {
+    nodes = [];
+    const count = Math.min(140, Math.floor((canvas.width * canvas.height) / 15000));
+    for (let i = 0; i < count; i++) {
+        nodes.push(new Node(Math.random() * canvas.width, Math.random() * canvas.height));
+    }
+}
+function animateNetwork() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    nodes.forEach(n => {
+        n.update();
+        n.draw();
+    });
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 130) {
+                const alpha = 0.18 - (dist / 130) * 0.18;
+                const hue = (nodes[i].colorPhase + nodes[j].colorPhase) / 2;
+                ctx.beginPath();
+                ctx.strokeStyle = `hsla(${hue % 360}, 80%, 65%, ${alpha})`;
+                ctx.lineWidth = 1;
+                ctx.moveTo(nodes[i].x, nodes[i].y);
+                ctx.lineTo(nodes[j].x, nodes[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+    requestAnimationFrame(animateNetwork);
+}
+initNodes();
+animateNetwork();
+
+// داده محصولات
+const PRICE_ORIGINAL = 6000;
+const PRICE_DISCOUNT = 5500;
+const products = [
+    { id: "oil_sunflower", name: "روغن آفتابگردان", category: "oil",
+      image: "https://delbahar-food.com/wp-content/uploads/2026/01/Del-Bahar-sunflower-oil-1.8-liters.jpg" },
+    { id: "oil_frying", name: "روغن سرخ‌کردنی", category: "oil",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjSoKe5ug7zhyyJ4RrTqduLw2_2h7-Y59m0GVNzmWk5TRL8dWrUXj3D955&s=10" },
+    { id: "yogurt_kalleh", name: "ماست پرچرب کاله", category: "yogurt",
+      image: "https://dkstatics-public.digikala.com/digikala-products/675b97da63e5a9a45e002896000f6ec7b6a30ea8_1730037728.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" },
+    { id: "yogurt_pegah", name: "ماست پرچرب پگاه", category: "yogurt",
+      image: "https://dkstatics-public.digikala.com/digikala-products/91d6ba29b40178b1db716d804c1b8c62e52f496c_1639204202.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80" },
+    { id: "yogurt_mihan", name: "ماست پرچرب میهن", category: "yogurt",
+      image: "https://image.torob.com/base/images/C4/_T/C4_TRdkiO0iUwUyl.jpg_/560x560.webp" },
+    { id: "cake_choco", name: "کیک شکلاتی", category: "cake",
+      image: "https://dkstatics-public.digikala.com/digikala-products/3351405.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: "cake_vanilla", name: "کیک وانیلی", category: "cake",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnENWiiFEyD7r9h0HVReTQ16c6sjjtQDabm63SxBBEbzRkWkfYru9gfkO8&s=10" }
+];
+const cart = {}; // id -> {product, qty}
+
+// رندر محصولات
+function renderProducts() {
+    const oilContainer = document.getElementById("oilProducts");
+    const yogurtContainer = document.getElementById("yogurtProducts");
+    const cakeContainer = document.getElementById("cakeProducts");
+    oilContainer.innerHTML = "";
+    yogurtContainer.innerHTML = "";
+    cakeContainer.innerHTML = "";
+    products.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        const qty = cart[p.id] ? cart[p.id].qty : 0;
+        card.innerHTML = `
+            <div class="product-image">
+                <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#ffe8c4,#fef9c3)'; this.parentElement.innerHTML='تصویر ${p.name}';">
+            </div>
+            <div>${p.name}</div>
+            <div class="price-row">
+                <span class="price-original">${PRICE_ORIGINAL.toLocaleString("fa-IR")} تومان</span>
+                <span class="price-discount">${PRICE_DISCOUNT.toLocaleString("fa-IR")} تومان</span>
+            </div>
+            <div class="product-actions">
+                ${qty > 0 ? `
+                    <button class="btn btn-small product-minus" onclick="decreaseQty('${p.id}')">−</button>
+                    <div class="product-quantity">${qty.toLocaleString("fa-IR")}</div>
+                    <button class="btn btn-small product-plus" onclick="addToCart('${p.id}')">+</button>
+                    <button class="btn btn-remove" onclick="removeItem('${p.id}')">حذف</button>
+                ` : `
+                    <button class="btn btn-add" onclick="addToCart('${p.id}')">افزودن به سبد</button>
+                `}
+            </div>
+        `;
+        if (p.category === "oil") oilContainer.appendChild(card);
+        else if (p.category === "yogurt") yogurtContainer.appendChild(card);
+        else cakeContainer.appendChild(card);
+    });
+}
+
+// افزودن به سبد
+function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!cart[id]) {
+        cart[id] = { product, qty: 1 };
+    } else {
+        cart[id].qty += 1;
+    }
+    renderCart();
+}
+
+// کم کردن
+function decreaseQty(id) {
+    if (!cart[id]) return;
+    cart[id].qty -= 1;
+    if (cart[id].qty <= 0) {
+        delete cart[id];
+    }
+    renderCart();
+}
+
+// حذف
+function removeItem(id) {
+    if (cart[id]) {
+        delete cart[id];
+        renderCart();
+    }
+}
+
+// رندر سبد
+function renderCart() {
+    const container = document.getElementById("cartItems");
+    container.innerHTML = "";
+    let sumOriginal = 0;
+    let sumFinal = 0;
+    Object.values(cart).forEach(item => {
+        const original = PRICE_ORIGINAL * item.qty;
+        const final = PRICE_DISCOUNT * item.qty;
+        sumOriginal += original;
+        sumFinal += final;
+        const row = document.createElement("div");
+        row.className = "cart-item-row";
+        row.innerHTML = `
+            <div class="cart-item-name">${item.product.name}</div>
+            <div class="cart-item-qty">
+                <button class="btn btn-small" onclick="decreaseQty('${item.product.id}')">-</button>
+                <span>${item.qty.toLocaleString("fa-IR")}</span>
+                <button class="btn btn-small" onclick="addToCart('${item.product.id}')">+</button>
+            </div>
+            <div>${final.toLocaleString("fa-IR")} تومان</div>
+            <div class="cart-item-total">${original.toLocaleString("fa-IR")} تومان</div>
+        `;
+        container.appendChild(row);
+    });
+    const discount = sumOriginal - sumFinal;
+    document.getElementById("sumOriginal").innerText =
+        sumOriginal.toLocaleString("fa-IR") + " تومان";
+    document.getElementById("sumDiscount").innerText =
+        discount.toLocaleString("fa-IR") + " تومان";
+    document.getElementById("sumFinal").innerText =
+        sumFinal.toLocaleString("fa-IR") + " تومان";
+    // وضعیت دکمه‌های محصولات را هم همگام می‌کنیم
+    renderProducts();
+}
+
+// ساعت زنده
+function updateClock() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString("fa-IR");
+    const timeStr = now.toLocaleTimeString("fa-IR");
+    document.getElementById("liveDate").innerText = dateStr;
+    document.getElementById("liveTime").innerText = timeStr;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ========== تایمر ۴۸ ساعته با شروع ثابت: ۱۴۰۵/۰۶/۲۳ ساعت ۱۴:۲۵ ==========
+// شهریور ۱۴۰۵ برابر با ۱۴ سپتامبر ۲۰۲۶ میلادی است
+const TIMER_START = new Date(2026, 8, 14, 14, 25, 0).getTime();
+const TIMER_DURATION = 48 * 60 * 60 * 1000;
+
+function initTimer() {
+
+    function tick() {
+
+        const now = Date.now();
+        const remaining = (TIMER_START + TIMER_DURATION) - now;
+
+        if (remaining <= 0) {
+            document.getElementById("countdown").innerHTML = "مهلت تمام شده";
+            document.getElementById("btnSubmitOrder").disabled = true;
+            return;
+        }
+
+        const totalSeconds = Math.floor(remaining / 1000);
+
+        // بدون روز - نمایش فقط ساعت، دقیقه، ثانیه
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+
+        document.getElementById("countdown").innerHTML =
+            '<span dir="ltr" style="display:inline-block;direction:ltr;unicode-bidi:embed;">' +
+            hours.toLocaleString("fa-IR") + " : " +
+            minutes.toLocaleString("fa-IR") + " : " +
+            seconds.toLocaleString("fa-IR") +
+            '</span>';
+    }
+
+    setInterval(tick,1000);
+    tick();
+}
+
+initTimer();
+
+// شرط دسته‌ها
+function checkCategories() {
+    let hasOil = false, hasYogurt = false, hasCake = false;
+    Object.values(cart).forEach(item => {
+        if (item.product.category === "oil") hasOil = true;
+        if (item.product.category === "yogurt") hasYogurt = true;
+        if (item.product.category === "cake") hasCake = true;
+    });
+    const missing = [];
+    if (!hasOil) missing.push("روغن");
+    if (!hasYogurt) missing.push("ماست");
+    if (!hasCake) missing.push("کیک");
+    return missing;
+}
+
+// ثبت سفارش
+document.getElementById("btnSubmitOrder").addEventListener("click", function() {
+    if (Object.keys(cart).length === 0) {
+        alert("سبد خرید خالی است.");
+        return;
+    }
+    const missing = checkCategories();
+    if (missing.length > 0) {
+        alert("برای ثبت سفارش، حداقل یک محصول از دسته‌های زیر لازم است:\n" + missing.join("، "));
+        return;
+    }
+    const name = document.getElementById("customerName").value.trim();
+    const mobile = document.getElementById("customerMobile").value.trim();
+    const nationalId = document.getElementById("customerNationalId").value.trim();
+    if (!name || !mobile || !nationalId) {
+        alert("لطفاً تمام فیلدهای اطلاعات مشتری را تکمیل کنید.");
+        return;
+    }
+    if (!/^\d{10}$/.test(nationalId)) {
+        alert("کد ملی باید دقیقاً ۱۰ رقم باشد.");
+        return;
+    }
+    generateInvoice(name, mobile, nationalId);
+});
+
+// تولید فاکتور
+function generateInvoice(name, mobile, nationalId) {
+    const invoiceCard = document.getElementById("invoiceCard");
+    invoiceCard.style.display = "block";
+    const now = new Date();
+    const dateStr = now.toLocaleDateString("fa-IR");
+    const timeStr = now.toLocaleTimeString("fa-IR");
+    const invoiceNumber = Math.floor(Math.random() * 900000) + 100000;
+    document.getElementById("invoiceNumber").innerText =
+        invoiceNumber.toLocaleString("fa-IR");
+    document.getElementById("invoiceCustomerName").innerText = name;
+    document.getElementById("invoiceCustomerMobile").innerText = mobile;
+    document.getElementById("invoiceCustomerNationalId").innerText =
+        nationalId.toLocaleString("fa-IR");
+    document.getElementById("invoiceDate").innerText = dateStr;
+    document.getElementById("invoiceTime").innerText = timeStr;
+    const tbody = document.getElementById("invoiceTableBody");
+    tbody.innerHTML = "";
+    let totalProfit = 0;
+    Object.values(cart).forEach(item => {
+        const qty = item.qty;
+        const profitPerUnit = PRICE_ORIGINAL - PRICE_DISCOUNT; // ۵۰۰
+        const profit = profitPerUnit * qty;
+        totalProfit += profit;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${item.product.name}</td>
+            <td>${qty.toLocaleString("fa-IR")}</td>
+            <td>${PRICE_ORIGINAL.toLocaleString("fa-IR")}</td>
+            <td>${PRICE_DISCOUNT.toLocaleString("fa-IR")}</td>
+            <td>${profit.toLocaleString("fa-IR")}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+    document.getElementById("invoiceTotalProfit").innerText =
+        totalProfit.toLocaleString("fa-IR");
+    document.getElementById("invoiceStrongText").innerText =
+        "لطفاً در ساعت ۱۷:۰۰ و تاریخ " + dateStr +
+        " در مکان «حسینیه مودت» برای تحویل سفارش خود مراجعه کنید.";
+    // ارسال فاکتور به Google Sheets
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfUSkQAUTg6ObzvT6rWQLRCZcTtsWEepySf7S76hTXqx4rxd3KET65eSCdMXazgZIf/exec";
+
+const orderData = {
+    invoiceNumber: invoiceNumber,
+    customerName: name,
+    mobile: mobile,
+    nationalId: nationalId,
+    date: dateStr,
+    time: timeStr,
+    deliveryAddress: "حسینیه مودت",
+    deliveryTime: "سه‌شنبه ساعت ۱۷:۰۰",
+    originalTotal: Object.values(cart).reduce(
+        (sum, item) => sum + (PRICE_ORIGINAL * item.qty), 0
+    ),
+    discountTotal: Object.values(cart).reduce(
+        (sum, item) => sum + ((PRICE_ORIGINAL - PRICE_DISCOUNT) * item.qty), 0
+    ),
+    finalTotal: Object.values(cart).reduce(
+        (sum, item) => sum + (PRICE_DISCOUNT * item.qty), 0
+    ),
+    totalProfit: totalProfit,
+    items: Object.values(cart).map(item => ({
+        name: item.product.name,
+        quantity: item.qty
+    }))
+};
+
+const formData = new URLSearchParams();
+formData.append("data", JSON.stringify(orderData));
+
+fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+    },
+    body: formData.toString()
+})
+.then(() => {
+    console.log("سفارش با موفقیت به Google Sheets ارسال شد.");
+})
+.catch(error => {
+    console.error("خطا در ارسال سفارش:", error);
+});
+    // اسکرول به فاکتور
+    invoiceCard.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// شروع
+renderProducts();
+renderCart();
+
+// افکت نرم دنبال‌کننده موس
+const cursorGlow = document.getElementById("cursorGlow");
+let glowX = window.innerWidth / 2, glowY = window.innerHeight / 2;
+let targetX = glowX, targetY = glowY;
+window.addEventListener("mousemove", (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    cursorGlow.style.opacity = "1";
+});
+window.addEventListener("mouseleave", () => cursorGlow.style.opacity = "0");
+function animateCursorGlow(){
+    glowX += (targetX - glowX) * 0.12;
+    glowY += (targetY - glowY) * 0.12;
+    cursorGlow.style.left = glowX + "px";
+    cursorGlow.style.top = glowY + "px";
+    requestAnimationFrame(animateCursorGlow);
+}
+animateCursorGlow();
+</script>
+<script>
+function sanitizePdfName(name){
+    name = (name || "فاکتور").trim();
+    // حذف کاراکترهای نامعتبر برای نام فایل در ویندوز
+    name = name.replace(/[\\/:*?"<>|]/g, " ").replace(/\s+/g, " ").trim();
+    return name || "فاکتور";
+}
+function printInvoicePDF(){
+    // اطمینان از اینکه فاکتور نمایش داده شده
+    const invoiceCard = document.getElementById("invoiceCard");
+    if (invoiceCard.style.display === "none" || !invoiceCard.style.display) {
+        alert("ابتدا سفارش را ثبت کنید تا فاکتور ساخته شود.");
+        return;
+    }
+    
+    const name = document.getElementById("customerName").value.trim()
+        || document.getElementById("invoiceCustomerName").innerText.trim()
+        || "فاکتور";
+    const safeName = sanitizePdfName(name);
+    
+    // عنوان سند روی بعضی مرورگرها به عنوان نام پیشنهادی PDF استفاده می‌شود.
+    const oldTitle = document.title;
+    document.title = safeName;
+    
+    // کمی تأخیر برای اعمال استایل‌های چاپ
+    setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+            document.title = oldTitle;
+        }, 1500);
+    }, 100);
+}
+</script>
+</body>
+</html>
