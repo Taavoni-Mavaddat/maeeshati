@@ -112,26 +112,8 @@ body{
 }
 
 .title-box::after{
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:5px;
-    height:100%;
-    background:linear-gradient(
-        to bottom,
-        var(--primary-2) 0%,
-        #0f9996 50%,
-        var(--accent) 100%
-    );
-    border-radius:0 5px 5px 0;
-    z-index:2;
-    transform:translateZ(0);
-    will-change:transform;
+    display:none;
 }
-.title-box:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--shadow-hover);
 }
 
 .title-text{
