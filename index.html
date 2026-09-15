@@ -484,6 +484,14 @@ body{
 .btn-submit-final:hover{transform:translateY(-2px);filter:brightness(1.04)}
 .btn-submit-final:disabled{background:#b8c3c8;cursor:not-allowed;box-shadow:none;transform:none;filter:none}
 .receipt-size-note{display:block;margin-top:6px;color:var(--muted);font-size:.70rem}
+
+/* راست‌چین کردن شماره موبایل */
+#customerMobile{
+    direction:rtl;
+    text-align:right;
+    unicode-bidi:plaintext;
+}
+
 @media print{
     .payment-box{display:none !important}
 }
