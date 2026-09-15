@@ -7,7 +7,6 @@
 <title>خدمات اعضا و افراد عادی گروه مردمی مودّت اردبیل</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
-
 :root {
     --bg: #f7f7f8;
     --card: #fff;
@@ -21,7 +20,6 @@
     --shadow: 0 8px 28px rgba(0,0,0,.08);
     --shadow-hover: 0 16px 38px rgba(0,0,0,.13);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { min-height: 100%; }
 body {
@@ -32,7 +30,6 @@ body {
     line-height: 1.8;
     overflow-x: hidden;
 }
-
 /* ========== انیمیشن شناور (شلوغ‌تر) ========== */
 .float-icons {
     position: fixed;
@@ -55,7 +52,6 @@ body {
     90%  { opacity: 0.32; }
     100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
 }
-
 .app-wrapper {
     max-width: 1100px;
     width: 100%;
@@ -64,7 +60,6 @@ body {
     position: relative;
     z-index: 1;
 }
-
 /* هدر */
 .top-bar {
     display: flex;
@@ -118,12 +113,11 @@ body {
     padding: 4px 0;
     border-bottom: 1px solid #f1f1f1;
 }
-.info-row: last-child { border-bottom: 0; }
-.info-row span: last-child {
+.info-row:last-child { border-bottom: 0; }
+.info-row span:last-child {
     font-weight: 800;
     color: var(--primary);
 }
-
 /* نوار پیشرفت */
 .progress-bar {
     background: #fff;
@@ -175,7 +169,6 @@ body {
     background: #16a34a;
     color: #fff;
 }
-
 /* کارت‌ها */
 .section-card, .cart-card, .form-card, .invoice-card, .success-card {
     background: #fff;
@@ -185,7 +178,6 @@ body {
     box-shadow: var(--shadow);
     margin-bottom: 16px;
 }
-
 .section-card h2, .form-card h2, .cart-header h2, .invoice-header h2 {
     font-size: 1.08rem;
     font-weight: 800;
@@ -202,7 +194,6 @@ body {
     background: var(--primary);
     box-shadow: 0 0 0 5px rgba(239,57,78,.10);
 }
-
 /* محصولات */
 .product-grid {
     display: grid;
@@ -265,7 +256,6 @@ body {
     gap: 7px;
     align-items: center;
 }
-
 /* دکمه‌ها */
 .btn {
     border: 0;
@@ -329,7 +319,6 @@ body {
     width: 100%;
 }
 .btn-back:hover { border-color: #ef394e; color: #ef394e; }
-
 .product-quantity {
     min-width: 38px;
     height: 36px;
@@ -341,7 +330,6 @@ body {
     background: #fff;
     font-weight: 800;
 }
-
 /* سبد */
 .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .cart-items { border-top: 1px solid #eee; padding-top: 11px; }
@@ -376,7 +364,6 @@ body {
     font-weight: 800;
     color: var(--primary);
 }
-
 /* فرم */
 .form-row { display: flex; flex-direction: column; margin-bottom: 12px; font-size: .85rem; }
 .form-row label { margin-bottom: 5px; font-weight: 600; }
@@ -408,7 +395,6 @@ body {
     text-align: right;
     unicode-bidi: plaintext;
 }
-
 /* فاکتور */
 .invoice-card { display: none; }
 .invoice-header { text-align: center; margin-bottom: 12px; }
@@ -448,7 +434,6 @@ body {
     font-size: .9rem;
     color: var(--primary);
 }
-
 /* پرداخت */
 .payment-box {
     margin-top: 18px;
@@ -513,7 +498,6 @@ body {
 }
 .receipt-preview .receipt-ok { margin-top: 8px; color: #087f3d; font-size: .82rem; font-weight: 800; }
 .receipt-size-note { display: block; margin-top: 6px; color: var(--muted); font-size: .70rem; }
-
 /* صفحه موفقیت */
 .success-card {
     text-align: center;
@@ -542,7 +526,6 @@ body {
     margin: 18px 0;
     font-size: .9rem;
 }
-
 /* مراحل */
 .step { display: none; }
 .step.active { display: block; animation: fadeIn .4s ease; }
@@ -550,7 +533,6 @@ body {
     from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
 /* دکمه شناور مرحله ۱ */
 .fixed-next {
     position: sticky;
@@ -569,7 +551,6 @@ body {
     margin-top: 8px;
     min-height: 16px;
 }
-
 /* پرینت */
 @media print {
     .progress-bar, .fixed-next, .btn-back, .btn-pdf, .payment-box, .float-icons, .top-bar .info-box {
@@ -578,7 +559,6 @@ body {
     .invoice-card { display: block !important; }
     body { background: #fff; }
 }
-
 @media (max-width: 768px) {
     .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
     .cart-item-row { grid-template-columns: 2fr 1fr 1fr; }
@@ -593,10 +573,8 @@ body {
 </style>
 </head>
 <body>
-
 <!-- انیمیشن شناور -->
 <div class="float-icons" id="floatIcons"></div>
-
 <div class="app-wrapper">
     <!-- هدر -->
     <div class="top-bar">
@@ -610,7 +588,6 @@ body {
             <div class="info-row"><span>مهلت ثبت سفارش:</span><span id="countdown"></span></div>
         </div>
     </div>
-
     <!-- نوار پیشرفت -->
     <div class="progress-bar" id="progressBar">
         <div class="progress-step active" data-step="1"><span>۱</span> انتخاب محصول</div>
@@ -618,7 +595,6 @@ body {
         <div class="progress-step" data-step="3"><span>۳</span> فاکتور و پرداخت</div>
         <div class="progress-step" data-step="4"><span>۴</span> تکمیل سفارش</div>
     </div>
-
     <!-- ========== مرحله ۱: محصولات ========== -->
     <div class="step active" id="step1">
         <div class="section-card">
@@ -633,7 +609,6 @@ body {
             <h2>محصولات کیک</h2>
             <div class="product-grid" id="cakeProducts"></div>
         </div>
-
         <div class="fixed-next">
             <button class="btn btn-next" id="btnGoCart" disabled>
                 مشاهده سبد و ادامه (<span id="cartCount">۰</span> قلم)
@@ -641,7 +616,6 @@ body {
             <div class="category-hint" id="categoryHint"></div>
         </div>
     </div>
-
     <!-- ========== مرحله ۲: سبد + اطلاعات ========== -->
     <div class="step" id="step2">
         <div class="cart-card">
@@ -653,7 +627,6 @@ body {
                 <div class="cart-summary-row"><span>مبلغ نهایی قابل پرداخت:</span><span id="sumFinal">۰ تومان</span></div>
             </div>
         </div>
-
         <div class="form-card">
             <h2>اطلاعات مشتری و ثبت سفارش</h2>
             <div class="form-row">
@@ -680,7 +653,6 @@ body {
             <button class="btn btn-back" id="btnBackToProducts">بازگشت به محصولات</button>
         </div>
     </div>
-
     <!-- ========== مرحله ۳: فاکتور + پرداخت ========== -->
     <div class="step" id="step3">
         <div class="invoice-card" id="invoiceCard" style="display:block;">
@@ -713,7 +685,6 @@ body {
             <div class="invoice-footer">مجموع سود: <span id="invoiceTotalProfit"></span> تومان</div>
             <div class="invoice-footer-strong" id="invoiceStrongText"></div>
             <button class="btn btn-pdf" id="btnPdf" onclick="printInvoicePDF()">ذخیره فاکتور به صورت PDF</button>
-
             <div class="payment-box" id="paymentBox">
                 <div class="payment-title">💳 پرداخت و ارسال رسید</div>
                 <div class="payment-text">لطفاً مبلغ نهایی سبد خرید را پس از تخفیف به کارت زیر واریز کنید:</div>
@@ -737,7 +708,6 @@ body {
         </div>
         <button class="btn btn-back" id="btnBackToForm" style="margin-top:12px;">بازگشت به اطلاعات مشتری</button>
     </div>
-
     <!-- ========== مرحله ۴: موفقیت ========== -->
     <div class="step" id="step4">
         <div class="success-card" id="successCard" style="display:block;">
@@ -754,10 +724,11 @@ body {
         </div>
     </div>
 </div>
-
 <script>
 // ========== انیمیشن شناور (شلوغ‌تر) ==========
 function createFloatIcons() {
+    const container = document.getElementById("floatIcons");
+    if (!container) return;
     const icons = ["٪", "🛒", "📦", "🏷️", "🛍️", "💰", "🎁", "🧈", "🥛", "🍰"];
     const COUNT = 22;
     for (let i = 0; i < COUNT; i++) {
@@ -773,7 +744,6 @@ function createFloatIcons() {
     }
 }
 createFloatIcons();
-
 // ========== داده محصولات (بدون تغییر) ==========
 const PRICE_ORIGINAL = 6000;
 const PRICE_DISCOUNT = 5500;
@@ -794,14 +764,12 @@ const products = [
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnENWiiFEyD7r9h0HVReTQ16c6sjjtQDabm63SxBBEbzRkWkfYru9gfkO8&s=10" }
 ];
 const cart = {};
-
 // ========== مدیریت مراحل ==========
 let currentStep = 1;
 function goToStep(step) {
     document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
     document.getElementById("step" + step).classList.add("active");
     currentStep = step;
-
     // آپدیت نوار پیشرفت
     document.querySelectorAll(".progress-step").forEach(el => {
         const s = parseInt(el.dataset.step);
@@ -809,10 +777,8 @@ function goToStep(step) {
         if (s === step) el.classList.add("active");
         else if (s < step) el.classList.add("done");
     });
-
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
 // ========== رندر محصولات ==========
 function renderProducts() {
     const oilContainer = document.getElementById("oilProducts");
@@ -821,7 +787,6 @@ function renderProducts() {
     oilContainer.innerHTML = "";
     yogurtContainer.innerHTML = "";
     cakeContainer.innerHTML = "";
-
     products.forEach(p => {
         const card = document.createElement("div");
         card.className = "product-card";
@@ -852,7 +817,6 @@ function renderProducts() {
         else cakeContainer.appendChild(card);
     });
 }
-
 // ========== سبد ==========
 function addToCart(id) {
     const product = products.find(p => p.id === id);
@@ -876,14 +840,12 @@ function renderCart() {
     const container = document.getElementById("cartItems");
     container.innerHTML = "";
     let sumOriginal = 0, sumFinal = 0, totalItems = 0;
-
     Object.values(cart).forEach(item => {
         const original = PRICE_ORIGINAL * item.qty;
         const final = PRICE_DISCOUNT * item.qty;
         sumOriginal += original;
         sumFinal += final;
         totalItems += item.qty;
-
         const row = document.createElement("div");
         row.className = "cart-item-row";
         row.innerHTML = `
@@ -898,17 +860,14 @@ function renderCart() {
         `;
         container.appendChild(row);
     });
-
     const discount = sumOriginal - sumFinal;
     document.getElementById("sumOriginal").innerText = sumOriginal.toLocaleString("fa-IR") + " تومان";
     document.getElementById("sumDiscount").innerText = discount.toLocaleString("fa-IR") + " تومان";
     document.getElementById("sumFinal").innerText = sumFinal.toLocaleString("fa-IR") + " تومان";
     document.getElementById("cartCount").innerText = totalItems.toLocaleString("fa-IR");
-
     // دکمه ادامه مرحله ۱: فقط وقتی سبد خالی نیست و از هر سه دسته حداقل یک قلم انتخاب شده باشد فعال شود
     const missing = checkCategories();
     document.getElementById("btnGoCart").disabled = (totalItems === 0) || (missing.length > 0);
-
     const hintEl = document.getElementById("categoryHint");
     if (totalItems === 0) {
         hintEl.innerText = "";
@@ -917,10 +876,8 @@ function renderCart() {
     } else {
         hintEl.innerText = "";
     }
-
     renderProducts();
 }
-
 // ========== ساعت و تایمر (بدون تغییر منطق) ==========
 function updateClock() {
     const now = new Date();
@@ -929,7 +886,6 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 updateClock();
-
 const TIMER_START = new Date(2026, 8, 15, 13, 9, 0).getTime();
 const TIMER_DURATION = 7 * 24 * 60 * 60 * 1000;
 function initTimer() {
@@ -958,7 +914,6 @@ function initTimer() {
     tick();
 }
 initTimer();
-
 // ========== شرط دسته‌ها (بدون تغییر) ==========
 function checkCategories() {
     let hasOil = false, hasYogurt = false, hasCake = false;
@@ -973,7 +928,6 @@ function checkCategories() {
     if (!hasCake) missing.push("کیک");
     return missing;
 }
-
 // ========== اتصال به شیت (بدون تغییر) ==========
 const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwfUSkQAUTg6ObzvT6rWQLRCZcTtsWEepySf7S76hTXqx4rxd3KET65eSCdMXazgZIf/exec";
 async function saveOrderOnline(order) {
@@ -991,13 +945,11 @@ async function saveOrderOnline(order) {
         return {ok:false};
     }
 }
-
 let currentOrder = null;
 let receiptBase64 = "";
 let receiptFileName = "";
 let receiptMimeType = "";
 let isSubmittingFinal = false;
-
 // فشرده‌سازی رسید (بدون تغییر)
 function compressReceiptImage(file) {
     return new Promise((resolve, reject) => {
@@ -1029,7 +981,6 @@ function compressReceiptImage(file) {
         reader.readAsDataURL(file);
     });
 }
-
 // محدود کردن موبایل
 const mobileInput = document.getElementById("customerMobile");
 if (mobileInput) {
@@ -1037,7 +988,6 @@ if (mobileInput) {
         this.value = this.value.replace(/[^\d۰-۹]/g, "").slice(0, 11);
     });
 }
-
 // ========== دکمه‌های ناوبری مراحل ==========
 document.getElementById("btnGoCart").addEventListener("click", function() {
     if (Object.keys(cart).length === 0) {
@@ -1051,10 +1001,8 @@ document.getElementById("btnGoCart").addEventListener("click", function() {
     }
     goToStep(2);
 });
-
 document.getElementById("btnBackToProducts").addEventListener("click", () => goToStep(1));
 document.getElementById("btnBackToForm").addEventListener("click", () => goToStep(2));
-
 document.getElementById("btnNewOrder").addEventListener("click", function() {
     // ریست کامل
     for (let key in cart) delete cart[key];
@@ -1071,7 +1019,6 @@ document.getElementById("btnNewOrder").addEventListener("click", function() {
     renderCart();
     goToStep(1);
 });
-
 // ========== صدور فاکتور ==========
 document.getElementById("btnSubmitOrder").addEventListener("click", function() {
     if (Object.keys(cart).length === 0) {
@@ -1083,11 +1030,9 @@ document.getElementById("btnSubmitOrder").addEventListener("click", function() {
         alert("برای ثبت سفارش، حداقل یک محصول از دسته‌های زیر لازم است:\n" + missing.join("، "));
         return;
     }
-
     const name = document.getElementById("customerName").value.trim();
     const mobile = document.getElementById("customerMobile").value.trim();
     const nationalId = document.getElementById("customerNationalId").value.trim();
-
     if (!name || !mobile || !nationalId) {
         alert("لطفاً تمام فیلدهای اطلاعات مشتری را تکمیل کنید.");
         return;
@@ -1100,28 +1045,23 @@ document.getElementById("btnSubmitOrder").addEventListener("click", function() {
         alert("کد ملی باید دقیقاً ۱۰ رقم باشد.");
         return;
     }
-
     generateInvoice(name, mobile, nationalId);
     goToStep(3);
 });
-
 function generateInvoice(name, mobile, nationalId) {
     const now = new Date();
     const dateStr = now.toLocaleDateString("fa-IR");
     const timeStr = now.toLocaleTimeString("fa-IR");
     const invoiceNumber = Math.floor(Math.random() * 900000) + 100000;
-
     document.getElementById("invoiceNumber").innerText = invoiceNumber.toLocaleString("fa-IR", { useGrouping: false });
     document.getElementById("invoiceCustomerName").innerText = name;
     document.getElementById("invoiceCustomerMobile").innerText = mobile;
     document.getElementById("invoiceCustomerNationalId").innerText = nationalId.toLocaleString("fa-IR");
     document.getElementById("invoiceDate").innerText = dateStr;
     document.getElementById("invoiceTime").innerText = timeStr;
-
     const tbody = document.getElementById("invoiceTableBody");
     tbody.innerHTML = "";
     let totalProfit = 0, totalAmount = 0, originalTotal = 0;
-
     Object.values(cart).forEach(item => {
         const qty = item.qty;
         const profit = (PRICE_ORIGINAL - PRICE_DISCOUNT) * qty;
@@ -1130,7 +1070,6 @@ function generateInvoice(name, mobile, nationalId) {
         totalProfit += profit;
         originalTotal += original;
         totalAmount += finalPrice;
-
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${item.product.name}</td>
@@ -1141,11 +1080,9 @@ function generateInvoice(name, mobile, nationalId) {
         `;
         tbody.appendChild(tr);
     });
-
     document.getElementById("invoiceTotalProfit").innerText = totalProfit.toLocaleString("fa-IR");
     document.getElementById("invoiceStrongText").innerText =
         "لطفاً در ساعت ۱۷:۰۰ و تاریخ " + dateStr + " در مکان «حسینیه مودت» برای تحویل سفارش خود مراجعه کنید.";
-
     const orderItems = Object.values(cart).map(item => ({
         id: item.product.id,
         name: item.product.name,
@@ -1155,7 +1092,6 @@ function generateInvoice(name, mobile, nationalId) {
         discountPrice: PRICE_DISCOUNT,
         profit: (PRICE_ORIGINAL - PRICE_DISCOUNT) * item.qty
     }));
-
     currentOrder = {
         invoiceNumber: String(invoiceNumber),
         customerName: name,
@@ -1171,7 +1107,6 @@ function generateInvoice(name, mobile, nationalId) {
         totalProfit: totalProfit,
         items: orderItems
     };
-
     // ریست رسید
     receiptBase64 = "";
     receiptFileName = "";
@@ -1184,10 +1119,8 @@ function generateInvoice(name, mobile, nationalId) {
     finalButton.disabled = true;
     finalButton.textContent = "✅ ثبت نهایی سفارش";
     finalButton.style.background = "";
-
     document.getElementById("paymentAmount").innerText = totalAmount.toLocaleString("fa-IR") + " تومان";
 }
-
 // ========== آپلود رسید ==========
 document.getElementById("receiptFile").addEventListener("change", async function(e) {
     const file = e.target.files && e.target.files[0];
@@ -1206,7 +1139,6 @@ document.getElementById("receiptFile").addEventListener("change", async function
     const finalButton = document.getElementById("btnFinalSubmit");
     finalButton.disabled = true;
     finalButton.textContent = "⏳ در حال آماده‌سازی رسید...";
-
     try {
         const dataUrl = await compressReceiptImage(file);
         receiptBase64 = dataUrl.split(",")[1];
@@ -1224,7 +1156,6 @@ document.getElementById("receiptFile").addEventListener("change", async function
         finalButton.textContent = "✅ ثبت نهایی سفارش";
     }
 });
-
 // ========== ثبت نهایی ==========
 document.getElementById("btnFinalSubmit").addEventListener("click", async function() {
     if (isSubmittingFinal) return;
@@ -1236,19 +1167,16 @@ document.getElementById("btnFinalSubmit").addEventListener("click", async functi
         alert("لطفاً ابتدا تصویر رسید پرداخت را انتخاب کنید.");
         return;
     }
-
     isSubmittingFinal = true;
     const button = this;
     button.disabled = true;
     button.textContent = "⏳ در حال ثبت سفارش...";
-
     const orderToSend = {
         ...currentOrder,
         receiptBase64: receiptBase64,
         receiptFileName: receiptFileName,
         receiptMimeType: receiptMimeType
     };
-
     const result = await saveOrderOnline(orderToSend);
     if (result.ok) {
         document.getElementById("successInvoice").innerText = currentOrder.invoiceNumber;
@@ -1260,14 +1188,12 @@ document.getElementById("btnFinalSubmit").addEventListener("click", async functi
         alert("ثبت آنلاین سفارش انجام نشد. اینترنت و اتصال Google Sheets را بررسی کنید و دوباره بزنید.");
     }
 });
-
 // ========== پرینت PDF ==========
 function sanitizePdfName(name) {
     name = (name || "فاکتور").trim();
     name = name.replace(/[\\/:*?"<>|]/g, " ").replace(/\s+/g, " ").trim();
     return name || "فاکتور";
 }
-
 function printInvoicePDF() {
     const invoiceCard = document.getElementById("invoiceCard");
     if (!invoiceCard) return;
@@ -1282,7 +1208,6 @@ function printInvoicePDF() {
         setTimeout(() => { document.title = oldTitle; }, 1500);
     }, 100);
 }
-
 // شروع
 renderProducts();
 renderCart();
