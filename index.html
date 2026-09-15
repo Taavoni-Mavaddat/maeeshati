@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>خدمات اعضا و افراد عادی گروه مردمی مودت اردبیل</title>
+<title>خدمات اعضا و افراد عادی گروه مردمی مودّت اردبیل</title>
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
@@ -91,6 +91,15 @@ body{
         linear-gradient(135deg,#ef394e 0%,#d81f3b 55%,#b91530 100%);
     border:0;
     box-shadow:0 10px 30px rgba(239,57,78,.25);
+}
+
+.title-box .site-logo{
+    width:38px;
+    height:38px;
+    object-fit:contain;
+    flex:0 0 38px;
+    position:relative;
+    z-index:2;
 }
 
 .title-box::before{
@@ -532,8 +541,9 @@ body{
 <div class="app-wrapper">
     <div class="top-bar">
         <div class="title-box">
+            <img src="https://cdn.imgurl.ir/uploads/s09750_logo.png" alt="لوگوی مودّت" class="site-logo">
             <div class="title-text">
-                خدمات اعضا و افراد عادی گروه مردمی مودت اردبیل
+                خدمات اعضا و افراد عادی گروه مردمی مودّت اردبیل
             </div>
         </div>
         <div class="info-box">
@@ -602,7 +612,10 @@ body{
                 <input type="text" id="customerNationalId" maxlength="10">
             </div>
             <div class="form-row">
-                <label>آدرس تحویل:</label>
+                <label style="display:flex;align-items:center;gap:7px;">
+                    <img src="https://cdn.imgurl.ir/uploads/s09750_logo.png" alt="لوگو" style="width:24px;height:24px;object-fit:contain;flex:0 0 24px;">
+                    <span>آدرس تحویل:</span>
+                </label>
                 <textarea id="customerAddress" readonly>حسینیه مودت</textarea>
             </div>
             <div class="form-note">
@@ -614,7 +627,7 @@ body{
         <div class="invoice-card" id="invoiceCard">
             <div class="invoice-header">
                 <h2>فاکتور فروش</h2>
-                <div>خدمات اعضا و افراد عادی گروه مردمی مودت اردبیل</div>
+                <div>خدمات اعضا و افراد عادی گروه مردمی مودّت اردبیل</div>
             </div>
             <div class="invoice-info">
                 <div class="invoice-info-row">
@@ -912,10 +925,9 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// ========== تایمر ۴۸ ساعته با شروع ثابت: ۱۴۰۵/۰۶/۲۳ ساعت ۱۴:۲۵ ==========
-// شهریور ۱۴۰۵ برابر با ۱۴ سپتامبر ۲۰۲۶ میلادی است
-const TIMER_START = new Date(2026, 8, 14, 14, 25, 0).getTime();
-const TIMER_DURATION = 48 * 60 * 60 * 1000;
+// ========== مهلت ثبت سفارش: ۱ هفته از ۲۰۲۶/۰۹/۱۵ ساعت ۱۳:۰۹ ==========
+const TIMER_START = new Date(2026, 8, 15, 13, 9, 0).getTime();
+const TIMER_DURATION = 7 * 24 * 60 * 60 * 1000;
 
 function initTimer() {
 
@@ -931,18 +943,17 @@ function initTimer() {
         }
 
         const totalSeconds = Math.floor(remaining / 1000);
-
-        // بدون روز - نمایش فقط ساعت، دقیقه، ثانیه
-        const hours = Math.floor(totalSeconds / 3600);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
 
-
         document.getElementById("countdown").innerHTML =
-            '<span dir="ltr" style="display:inline-block;direction:ltr;unicode-bidi:embed;">' +
-            hours.toLocaleString("fa-IR") + " : " +
-            minutes.toLocaleString("fa-IR") + " : " +
-            seconds.toLocaleString("fa-IR") +
+            '<span dir="rtl" style="display:inline-block;unicode-bidi:embed;">' +
+            days.toLocaleString("fa-IR") + " روز و " +
+            hours.toLocaleString("fa-IR") + " ساعت و " +
+            minutes.toLocaleString("fa-IR") + " دقیقه و " +
+            seconds.toLocaleString("fa-IR") + " ثانیه" +
             '</span>';
     }
 
@@ -968,7 +979,7 @@ function checkCategories() {
 }
 
 // اتصال آنلاین به Google Sheets
-const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwfUSkQAUTg6ObzvT6rWQLRCZCtsWEepySf7S76hTXqx4rxd3KET65eSCdMXazgZIf/exec";
+const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwfUSkQAUTg6ObzvT6rWQLRCZcTtsWEepySf7S76hTXqx4rxd3KET65eSCdMXazgZIf/exec";
 
 async function saveOrderOnline(order) {
     if (!SHEET_API_URL) return {ok:false};
