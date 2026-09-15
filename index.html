@@ -766,8 +766,9 @@ function createFloatIcons() {
         el.className = "float-icon";
         el.textContent = icons[i % icons.length];
         el.style.left = Math.random() * 94 + "%";
-        el.style.animationDuration = (9 + Math.random() * 9) + "s";
-        el.style.animationDelay = (Math.random() * 10) + "s";
+        const duration = 9 + Math.random() * 9;
+        el.style.animationDuration = duration + "s";
+        el.style.animationDelay = (-Math.random() * duration) + "s";
         el.style.fontSize = (16 + Math.random() * 18) + "px";
         container.appendChild(el);
     }
