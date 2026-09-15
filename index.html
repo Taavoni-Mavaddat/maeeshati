@@ -608,7 +608,13 @@ body{
             </div>
             <div class="form-row">
                 <label>شماره موبایل:</label>
-                <input type="tel" id="customerMobile" placeholder="مثال: ۰۹۱۲۱۲۳۴۵۶۷">
+                <input type="tel"
+                       id="customerMobile"
+                       maxlength="11"
+                       inputmode="numeric"
+                       pattern="[0-9۰-۹]{11}"
+                       placeholder="مثال: ۰۹۱۲۱۲۳۴۵۶۷">
+                
             </div>
             <div class="form-row">
                 <label>کد ملی (۱۰ رقمی):</label>
@@ -1039,6 +1045,18 @@ function compressReceiptImage(file) {
     });
 }
 
+// محدود کردن شماره موبایل به حداکثر ۱۱ رقم
+const mobileInput = document.getElementById("customerMobile");
+
+if (mobileInput) {
+    mobileInput.addEventListener("input", function () {
+        this.value = this.value
+            .replace(/[^\d۰-۹]/g, "")
+            .slice(0, 11);
+    });
+}
+
+
 // ثبت سفارش اولیه فقط فاکتور را می‌سازد؛ ارسال به شیت بعد از رسید انجام می‌شود.
 document.getElementById("btnSubmitOrder").addEventListener("click", function() {
     if (Object.keys(cart).length === 0) {
@@ -1049,20 +1067,29 @@ document.getElementById("btnSubmitOrder").addEventListener("click", function() {
     if (missing.length > 0) {
         alert("برای ثبت سفارش، حداقل یک محصول از دسته‌های زیر لازم است:\n" + missing.join("، "));
         return;
-    }
-    const name = document.getElementById("customerName").value.trim();
-    const mobile = document.getElementById("customerMobile").value.trim();
-    const nationalId = document.getElementById("customerNationalId").value.trim();
-    if (!name || !mobile || !nationalId) {
-        alert("لطفاً تمام فیلدهای اطلاعات مشتری را تکمیل کنید.");
-        return;
-    }
-    if (!/^\d{10}$/.test(nationalId)) {
-        alert("کد ملی باید دقیقاً ۱۰ رقم باشد.");
-        return;
-    }
-    generateInvoice(name, mobile, nationalId);
-});
+         }
+        
+        const name = document.getElementById("customerName").value.trim();
+        const mobile = document.getElementById("customerMobile").value.trim();
+        const nationalId = document.getElementById("customerNationalId").value.trim();
+
+        if (!name || !mobile || !nationalId) {
+            alert("لطفاً تمام فیلدهای اطلاعات مشتری را تکمیل کنید.");
+            return;
+        }
+
+        if (!/^(09|۰۹)[0-9۰-۹]{9}$/.test(mobile)) {
+            alert("شماره موبایل باید دقیقاً ۱۱ رقم باشد و با ۰۹ شروع شود.");
+            return;
+        }
+
+        if (!/^\d{10}$/.test(nationalId)) {
+            alert("کد ملی باید دقیقاً ۱۰ رقم باشد.");
+            return;
+        }
+
+        generateInvoice(name, mobile, nationalId);
+    });
 
 // تولید فاکتور
 function generateInvoice(name, mobile, nationalId) {
