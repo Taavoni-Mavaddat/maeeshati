@@ -217,6 +217,17 @@ body {
     background: #16a34a;
     color: #fff;
 }
+/* مرحله ۴ (تکمیل سفارش) سبز باشد */
+.progress-step.active[data-step="4"] {
+    color: #16a34a;
+}
+.progress-step.active[data-step="4"] span {
+    background: #16a34a;
+    color: #fff;
+}.progress-step.done span {
+    background: #16a34a;
+    color: #fff;
+}
 /* کارت‌ها */
 .section-card, .cart-card, .form-card, .invoice-card, .success-card {
     background: #fff;
@@ -780,7 +791,7 @@ body {
                 <div>محل تحویل: حسینیه مودت</div>
             </div>
             <p style="font-size:.88rem;color:#666;margin-top:12px;">رسید پرداخت شما دریافت شد و سفارش در سیستم ثبت گردید.</p>
-            <button class="btn btn-order" id="btnNewOrder" style="margin-top:20px;max-width:280px;">ثبت سفارش جدید</button>
+            <button class="btn btn-order" id="btnNewOrder" style="margin-top:20px;max-width:280px;background:linear-gradient(135deg,#16a34a,#15803d);box-shadow:0 10px 22px rgba(22,163,74,.22);">ثبت سفارش جدید</button>
         </div>
     </div>
 </div>
