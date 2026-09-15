@@ -5,11 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="logo.png">
 <title>خدمات اعضا و افراد عادی گروه مردمی مودّت اردبیل</title>
-
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
-
 :root{
     --bg:#f7f7f8;
     --card:#fff;
@@ -24,10 +21,8 @@
     --shadow:0 8px 28px rgba(0,0,0,.08);
     --shadow-hover:0 16px 38px rgba(0,0,0,.13);
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
-
 body{
     font-family:"Vazirmatn","B Nazanin","Nazanin","Tahoma",sans-serif;
     background:
@@ -40,7 +35,6 @@ body{
     overflow-x:hidden;
     line-height:1.8;
 }
-
 #networkCanvas{
     position:fixed;
     inset:0;
@@ -53,14 +47,12 @@ body{
         #fafafa;
     opacity:.85;
 }
-
 .app-wrapper{
     max-width:1180px;
     width:100%;
     padding:22px 18px 50px;
     margin:0 auto;
 }
-
 /* هدر قرمز و سفید */
 .top-bar{
     display:flex;
@@ -70,7 +62,6 @@ body{
     margin-bottom:20px;
     align-items:stretch;
 }
-
 .title-box,.info-box,.section-card,.cart-card,.form-card,.invoice-card{
     background:#fff;
     border:1px solid #e8e8e8;
@@ -78,7 +69,6 @@ body{
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
 }
-
 .title-box{
     position:relative;
     overflow:hidden;
@@ -104,7 +94,6 @@ body{
     z-index:2;
     margin-left:8px;
 }
-
 .title-box::before{
     content:"";
     position:absolute;
@@ -121,7 +110,6 @@ body{
     border-radius:50%;
     bottom:-95px;left:-35px;
 }
-
 .title-text{
     position:relative;
     z-index:1;
@@ -131,7 +119,6 @@ body{
     letter-spacing:-.4px;
     text-shadow:0 2px 10px rgba(0,0,0,.16);
 }
-
 .info-box{
     flex:1 1 300px;
     border-radius:18px;
@@ -141,7 +128,6 @@ body{
     gap:6px;
     font-size:.88rem;
 }
-
 .info-row{
     display:flex;
     justify-content:space-between;
@@ -154,9 +140,7 @@ body{
     font-weight:800;
     color:var(--primary);
 }
-
 .main-layout{display:flex;flex-direction:column;gap:16px}
-
 .section-card,.cart-card,.form-card,.invoice-card{
     border-radius:18px;
     padding:20px;
@@ -167,7 +151,6 @@ body{
     transform:translateY(-2px);
     box-shadow:var(--shadow-hover);
 }
-
 .section-card h2,.form-card h2,.cart-header h2{
     font-size:1.1rem;
     font-weight:800;
@@ -183,13 +166,11 @@ body{
     background:var(--primary);
     box-shadow:0 0 0 5px rgba(239,57,78,.10);
 }
-
 .product-grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
     gap:15px;
 }
-
 .product-card{
     position:relative;
     overflow:hidden;
@@ -224,7 +205,6 @@ body{
     box-shadow:0 16px 34px rgba(0,0,0,.12);
     border-color:rgba(239,57,78,.35);
 }
-
 .product-image{
     position:relative;
     width:100%;
@@ -255,7 +235,6 @@ body{
     transition:transform .35s ease;
 }
 .product-card:hover .product-image img{transform:scale(1.07)}
-
 .price-row{
     display:flex;
     justify-content:space-between;
@@ -265,7 +244,6 @@ body{
 }
 .price-original{text-decoration:line-through;color:#aaa}
 .price-discount{color:var(--danger);font-weight:800}
-
 .product-actions{
     margin-top:4px;
     display:flex;
@@ -284,7 +262,6 @@ body{
 }
 .btn:hover{filter:brightness(1.03);transform:translateY(-2px)}
 .btn:active{transform:translateY(1px) scale(.98)}
-
 .btn-add{
     background:linear-gradient(135deg,#ef394e,#d92d42);
     color:#fff;
@@ -299,7 +276,6 @@ body{
     border:1px solid #ddd;
 }
 .btn-small:hover{border-color:#ef394e;color:#ef394e}
-
 .cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .cart-items{
     border-top:1px solid #eee;
@@ -320,7 +296,6 @@ body{
 .cart-item-row:hover{background:#fff5f6}
 .cart-item-name{font-weight:600}
 .cart-item-qty{display:flex;align-items:center;gap:5px}
-
 .cart-summary{
     border-top:1px solid #eee;
     margin-top:10px;
@@ -339,7 +314,6 @@ body{
     font-weight:800;
     color:var(--primary);
 }
-
 .btn-order{
     margin-top:13px;
     width:100%;
@@ -348,7 +322,6 @@ body{
     box-shadow:0 10px 22px rgba(239,57,78,.22);
 }
 .btn-order:disabled{background:#bbb;cursor:not-allowed;box-shadow:none}
-
 .form-row{display:flex;flex-direction:column;margin-bottom:11px;font-size:.85rem}
 .form-row label{margin-bottom:5px;font-weight:600}
 .form-row input,.form-row textarea{
@@ -374,7 +347,6 @@ body{
     border-radius:10px;
     padding:8px 10px;
 }
-
 .invoice-card{
     display:none;
     border:1px solid rgba(239,57,78,.18);
@@ -407,7 +379,6 @@ body{
 .invoice-table th{background:#fff1f3;font-weight:800;color:#b91f34}
 .invoice-footer{margin-top:10px;font-size:.85rem}
 .invoice-footer-strong{margin-top:11px;font-weight:800;font-size:.9rem;color:var(--primary)}
-
 .btn-pdf{
     margin-top:13px;
     width:100%;
@@ -415,7 +386,6 @@ body{
     color:#fff;
     box-shadow:0 9px 20px rgba(239,57,78,.18);
 }
-
 .product-quantity{
     min-width:38px;
     height:36px;
@@ -441,7 +411,6 @@ body{
     border:1px solid #ffd1d7;
 }
 .btn-remove:hover{background:#fff1f3;filter:none}
-
 .cursor-glow{
     position:fixed;
     width:230px;height:230px;
@@ -453,9 +422,6 @@ body{
     mix-blend-mode:multiply;
     transition:opacity .25s ease;
 }
-
-
-
 /* ================= پرداخت و ارسال رسید ================= */
 .payment-box{
     display:none;
@@ -484,18 +450,15 @@ body{
 .btn-submit-final:hover{transform:translateY(-2px);filter:brightness(1.04)}
 .btn-submit-final:disabled{background:#b8c3c8;cursor:not-allowed;box-shadow:none;transform:none;filter:none}
 .receipt-size-note{display:block;margin-top:6px;color:var(--muted);font-size:.70rem}
-
 /* راست‌چین کردن شماره موبایل */
 #customerMobile{
     direction:rtl;
     text-align:right;
     unicode-bidi:plaintext;
 }
-
 @media print{
     .payment-box{display:none !important}
 }
-
 @media print{
     @page{size:A4;margin:16mm}
     html,body{
@@ -531,7 +494,6 @@ body{
     .invoice-footer-strong{font-weight:800 !important;font-size:14px !important;margin-top:14px !important}
     *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;box-shadow:none !important;text-shadow:none !important}
 }
-
 @media (max-width:768px){
     .app-wrapper{padding:16px 12px 35px}
     .title-text{font-size:1.15rem}
@@ -543,7 +505,6 @@ body{
     .section-card,.cart-card,.form-card,.invoice-card{padding:15px}
     .info-box{font-size:.82rem}
 }
-
 </style>
 </head>
 <body>
@@ -697,7 +658,6 @@ body{
             </div>
             <div class="invoice-footer-strong" id="invoiceStrongText"></div>
             <button class="btn btn-pdf" id="btnPdf" onclick="printInvoicePDF()">ذخیره فاکتور به صورت PDF</button>
-
             <div class="payment-box" id="paymentBox">
                 <div class="payment-title">💳 پرداخت و ارسال رسید</div>
                 <div class="payment-text">لطفاً مبلغ نهایی سبد خرید را پس از تخفیف به کارت زیر واریز کنید:</div>
@@ -806,7 +766,6 @@ function animateNetwork() {
 }
 initNodes();
 animateNetwork();
-
 // داده محصولات
 const PRICE_ORIGINAL = 6000;
 const PRICE_DISCOUNT = 5500;
@@ -827,7 +786,6 @@ const products = [
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnENWiiFEyD7r9h0HVReTQ16c6sjjtQDabm63SxBBEbzRkWkfYru9gfkO8&s=10" }
 ];
 const cart = {}; // id -> {product, qty}
-
 // رندر محصولات
 function renderProducts() {
     const oilContainer = document.getElementById("oilProducts");
@@ -865,7 +823,6 @@ function renderProducts() {
         else cakeContainer.appendChild(card);
     });
 }
-
 // افزودن به سبد
 function addToCart(id) {
     const product = products.find(p => p.id === id);
@@ -876,7 +833,6 @@ function addToCart(id) {
     }
     renderCart();
 }
-
 // کم کردن
 function decreaseQty(id) {
     if (!cart[id]) return;
@@ -886,7 +842,6 @@ function decreaseQty(id) {
     }
     renderCart();
 }
-
 // حذف
 function removeItem(id) {
     if (cart[id]) {
@@ -894,7 +849,6 @@ function removeItem(id) {
         renderCart();
     }
 }
-
 // رندر سبد
 function renderCart() {
     const container = document.getElementById("cartItems");
@@ -930,7 +884,6 @@ function renderCart() {
     // وضعیت دکمه‌های محصولات را هم همگام می‌کنیم
     renderProducts();
 }
-
 // ساعت زنده
 function updateClock() {
     const now = new Date();
@@ -941,30 +894,23 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 updateClock();
-
 // ========== مهلت ثبت سفارش: ۱ هفته از ۲۰۲۶/۰۹/۱۵ ساعت ۱۳:۰۹ ==========
 const TIMER_START = new Date(2026, 8, 15, 13, 9, 0).getTime();
 const TIMER_DURATION = 7 * 24 * 60 * 60 * 1000;
-
 function initTimer() {
-
     function tick() {
-
         const now = Date.now();
         const remaining = (TIMER_START + TIMER_DURATION) - now;
-
         if (remaining <= 0) {
             document.getElementById("countdown").innerHTML = "مهلت تمام شده";
             document.getElementById("btnSubmitOrder").disabled = true;
             return;
         }
-
         const totalSeconds = Math.floor(remaining / 1000);
         const days = Math.floor(totalSeconds / 86400);
         const hours = Math.floor((totalSeconds % 86400) / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
-
         document.getElementById("countdown").innerHTML =
             '<span dir="rtl" style="display:inline-block;unicode-bidi:embed;">' +
             days.toLocaleString("fa-IR") + " روز و " +
@@ -973,13 +919,10 @@ function initTimer() {
             seconds.toLocaleString("fa-IR") + " ثانیه" +
             '</span>';
     }
-
     setInterval(tick,1000);
     tick();
 }
-
 initTimer();
-
 // شرط دسته‌ها
 function checkCategories() {
     let hasOil = false, hasYogurt = false, hasCake = false;
@@ -994,10 +937,8 @@ function checkCategories() {
     if (!hasCake) missing.push("کیک");
     return missing;
 }
-
 // اتصال آنلاین به Google Sheets
 const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwfUSkQAUTg6ObzvT6rWQLRCZcTtsWEepySf7S76hTXqx4rxd3KET65eSCdMXazgZIf/exec";
-
 async function saveOrderOnline(order) {
     if (!SHEET_API_URL) return {ok:false};
     try {
@@ -1013,13 +954,11 @@ async function saveOrderOnline(order) {
         return {ok:false};
     }
 }
-
 let currentOrder = null;
 let receiptBase64 = "";
 let receiptFileName = "";
 let receiptMimeType = "";
 let isSubmittingFinal = false;
-
 // تبدیل تصویر رسید به فایل سبک‌تر برای ارسال مطمئن به Apps Script
 function compressReceiptImage(file) {
     return new Promise((resolve, reject) => {
@@ -1037,7 +976,6 @@ function compressReceiptImage(file) {
                 ctx.fillStyle = "#ffffff";
                 ctx.fillRect(0,0,canvas.width,canvas.height);
                 ctx.drawImage(img,0,0,canvas.width,canvas.height);
-
                 let quality = 0.82;
                 let dataUrl = canvas.toDataURL("image/jpeg", quality);
                 while (dataUrl.length > 2.5 * 1024 * 1024 && quality > 0.45) {
@@ -1052,10 +990,8 @@ function compressReceiptImage(file) {
         reader.readAsDataURL(file);
     });
 }
-
 // محدود کردن شماره موبایل به حداکثر ۱۱ رقم
 const mobileInput = document.getElementById("customerMobile");
-
 if (mobileInput) {
     mobileInput.addEventListener("input", function () {
         this.value = this.value
@@ -1063,8 +999,6 @@ if (mobileInput) {
             .slice(0, 11);
     });
 }
-
-
 // ثبت سفارش اولیه فقط فاکتور را می‌سازد؛ ارسال به شیت بعد از رسید انجام می‌شود.
 document.getElementById("btnSubmitOrder").addEventListener("click", function() {
     if (Object.keys(cart).length === 0) {
@@ -1080,48 +1014,40 @@ document.getElementById("btnSubmitOrder").addEventListener("click", function() {
         const name = document.getElementById("customerName").value.trim();
         const mobile = document.getElementById("customerMobile").value.trim();
         const nationalId = document.getElementById("customerNationalId").value.trim();
-
         if (!name || !mobile || !nationalId) {
             alert("لطفاً تمام فیلدهای اطلاعات مشتری را تکمیل کنید.");
             return;
         }
-
         if (!/^(09|۰۹)[0-9۰-۹]{9}$/.test(mobile)) {
             alert("شماره موبایل باید دقیقاً ۱۱ رقم باشد و با ۰۹ شروع شود.");
             return;
         }
-
         if (!/^\d{10}$/.test(nationalId)) {
             alert("کد ملی باید دقیقاً ۱۰ رقم باشد.");
             return;
         }
-
         generateInvoice(name, mobile, nationalId);
     });
-
 // تولید فاکتور
 function generateInvoice(name, mobile, nationalId) {
     const invoiceCard = document.getElementById("invoiceCard");
     invoiceCard.style.display = "block";
-
     const now = new Date();
     const dateStr = now.toLocaleDateString("fa-IR");
     const timeStr = now.toLocaleTimeString("fa-IR");
     const invoiceNumber = Math.floor(Math.random() * 900000) + 100000;
-
-    document.getElementById("invoiceNumber").innerText = invoiceNumber.toLocaleString("fa-IR");
+    // فقط ۶ رقم بدون ویرگول (جداکننده هزارگان)
+    document.getElementById("invoiceNumber").innerText = invoiceNumber.toLocaleString("fa-IR", { useGrouping: false });
     document.getElementById("invoiceCustomerName").innerText = name;
     document.getElementById("invoiceCustomerMobile").innerText = mobile;
     document.getElementById("invoiceCustomerNationalId").innerText = nationalId.toLocaleString("fa-IR");
     document.getElementById("invoiceDate").innerText = dateStr;
     document.getElementById("invoiceTime").innerText = timeStr;
-
     const tbody = document.getElementById("invoiceTableBody");
     tbody.innerHTML = "";
     let totalProfit = 0;
     let totalAmount = 0;
     let originalTotal = 0;
-
     Object.values(cart).forEach(item => {
         const qty = item.qty;
         const profit = (PRICE_ORIGINAL - PRICE_DISCOUNT) * qty;
@@ -1130,7 +1056,6 @@ function generateInvoice(name, mobile, nationalId) {
         totalProfit += profit;
         originalTotal += original;
         totalAmount += finalPrice;
-
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${item.product.name}</td>
@@ -1141,12 +1066,10 @@ function generateInvoice(name, mobile, nationalId) {
         `;
         tbody.appendChild(tr);
     });
-
     document.getElementById("invoiceTotalProfit").innerText = totalProfit.toLocaleString("fa-IR");
     document.getElementById("invoiceStrongText").innerText =
         "لطفاً در ساعت ۱۷:۰۰ و تاریخ " + dateStr +
         " در مکان «حسینیه مودت» برای تحویل سفارش خود مراجعه کنید.";
-
     const orderItems = Object.values(cart).map(item => ({
         id: item.product.id,
         name: item.product.name,
@@ -1156,7 +1079,6 @@ function generateInvoice(name, mobile, nationalId) {
         discountPrice: PRICE_DISCOUNT,
         profit: (PRICE_ORIGINAL - PRICE_DISCOUNT) * item.qty
     }));
-
     currentOrder = {
         invoiceNumber: String(invoiceNumber),
         customerName: name,
@@ -1172,7 +1094,6 @@ function generateInvoice(name, mobile, nationalId) {
         totalProfit: totalProfit,
         items: orderItems
     };
-
     // هر بار فاکتور جدید ساخته شد، رسید قبلی پاک شود.
     receiptBase64 = "";
     receiptFileName = "";
@@ -1189,20 +1110,16 @@ function generateInvoice(name, mobile, nationalId) {
         finalButton.disabled = true;
         finalButton.textContent = "✅ ثبت نهایی سفارش";
     }
-
     document.getElementById("paymentAmount").innerText = totalAmount.toLocaleString("fa-IR") + " تومان";
     document.getElementById("paymentBox").style.display = "block";
-
     invoiceCard.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
 // انتخاب و آماده‌سازی رسید
 const receiptInput = document.getElementById("receiptFile");
 if (receiptInput) {
     receiptInput.addEventListener("change", async function(e) {
         const file = e.target.files && e.target.files[0];
         if (!file) return;
-
         if (!file.type.startsWith("image/")) {
             alert("لطفاً فقط تصویر رسید را انتخاب کنید.");
             e.target.value = "";
@@ -1213,18 +1130,15 @@ if (receiptInput) {
             e.target.value = "";
             return;
         }
-
         const preview = document.getElementById("receiptPreview");
         const finalButton = document.getElementById("btnFinalSubmit");
         finalButton.disabled = true;
         finalButton.textContent = "⏳ در حال آماده‌سازی رسید...";
-
         try {
             const dataUrl = await compressReceiptImage(file);
             receiptBase64 = dataUrl.split(",")[1];
             receiptFileName = "receipt-" + Date.now() + ".jpg";
             receiptMimeType = "image/jpeg";
-
             preview.innerHTML = `<img src="${dataUrl}" alt="رسید پرداخت"><div class="receipt-ok">✅ رسید آماده ارسال است</div>`;
             preview.style.display = "block";
             finalButton.disabled = false;
@@ -1238,7 +1152,6 @@ if (receiptInput) {
         }
     });
 }
-
 // ثبت نهایی: فقط بعد از انتخاب رسید به Google Sheets ارسال می‌شود.
 document.getElementById("btnFinalSubmit").addEventListener("click", async function() {
     if (isSubmittingFinal) return;
@@ -1250,21 +1163,17 @@ document.getElementById("btnFinalSubmit").addEventListener("click", async functi
         alert("لطفاً ابتدا تصویر رسید پرداخت را انتخاب کنید.");
         return;
     }
-
     isSubmittingFinal = true;
     const button = this;
     button.disabled = true;
     button.textContent = "⏳ در حال ثبت سفارش...";
-
     const orderToSend = {
         ...currentOrder,
         receiptBase64: receiptBase64,
         receiptFileName: receiptFileName,
         receiptMimeType: receiptMimeType
     };
-
     const result = await saveOrderOnline(orderToSend);
-
     if (result.ok) {
         button.textContent = "✅ سفارش با موفقیت ثبت شد";
         button.style.background = "linear-gradient(135deg,#087f3d,#16a34a)";
@@ -1276,11 +1185,9 @@ document.getElementById("btnFinalSubmit").addEventListener("click", async functi
         alert("ثبت آنلاین سفارش انجام نشد. اینترنت و اتصال Google Sheets را بررسی کنید و دوباره بزنید.");
     }
 });
-
 // شروع
 renderProducts();
 renderCart();
-
 // افکت نرم دنبال‌کننده موس
 const cursorGlow = document.getElementById("cursorGlow");
 let glowX = window.innerWidth / 2, glowY = window.innerHeight / 2;
