@@ -224,7 +224,8 @@ body {
 .progress-step.active[data-step="4"] span {
     background: #16a34a;
     color: #fff;
-}.progress-step.done span {
+}
+.progress-step.done span {
     background: #16a34a;
     color: #fff;
 }
@@ -815,26 +816,37 @@ function createFloatIcons() {
     }
 }
 createFloatIcons();
-// ========== داده محصولات (بدون تغییر) ==========
-const PRICE_ORIGINAL = 6000;
-const PRICE_DISCOUNT = 5500;
+
+// ========== داده محصولات (هر محصول قیمت خودش را دارد) ==========
 const products = [
-    { id: "oil_sunflower", name: "روغن آفتابگردان", category: "oil",
-      image: "https://delbahar-food.com/wp-content/uploads/2026/01/Del-Bahar-sunflower-oil-1.8-liters.jpg" },
-    { id: "oil_frying", name: "روغن سرخ‌کردنی", category: "oil",
+    { id: "oil_sunflower", name: "روغن آفتابگردان اویلا ۱.۸ لیتری", category: "oil",
+      originalPrice: 810000, discountPrice: 755000,
+      image: "https://cdn.imgurl.ir/uploads/y027118_175b4a81-0558-4aa3-a491-8b40ab89c38b1.jpg" },
+    { id: "oil_frying", name: "روغن سرخ‌کردنی بهار ۱.۸ لیتری", category: "oil",
+      originalPrice: 805000, discountPrice: 750000,
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjSoKe5ug7zhyyJ4RrTqduLw2_2h7-Y59m0GVNzmWk5TRL8dWrUXj3D955&s=10" },
+    { id: "oil_oila_135", name: "روغن سرخ‌کردنی ۱.۳۵ لیتری اویلا", category: "oil",
+      originalPrice: 605000, discountPrice: 580000,
+      image: "https://cdn.imgurl.ir/uploads/r89779_e79f4100-29f7-4d70-9f7d-abf48f44eab51.jpg" },
     { id: "yogurt_kalleh", name: "ماست پرچرب کاله", category: "yogurt",
+      originalPrice: 6000, discountPrice: 5500,
       image: "https://dkstatics-public.digikala.com/digikala-products/675b97da63e5a9a45e002896000f6ec7b6a30ea8_1730037728.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" },
     { id: "yogurt_pegah", name: "ماست پرچرب پگاه", category: "yogurt",
+      originalPrice: 6000, discountPrice: 5500,
       image: "https://dkstatics-public.digikala.com/digikala-products/91d6ba29b40178b1db716d804c1b8c62e52f496c_1639204202.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80" },
     { id: "yogurt_mihan", name: "ماست پرچرب میهن", category: "yogurt",
+      originalPrice: 6000, discountPrice: 5500,
       image: "https://image.torob.com/base/images/C4/_T/C4_TRdkiO0iUwUyl.jpg_/560x560.webp" },
     { id: "cake_choco", name: "کیک شکلاتی", category: "cake",
+      originalPrice: 6000, discountPrice: 5500,
       image: "https://dkstatics-public.digikala.com/digikala-products/3351405.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
     { id: "cake_vanilla", name: "کیک وانیلی", category: "cake",
+      originalPrice: 6000, discountPrice: 5500,
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnENWiiFEyD7r9h0HVReTQ16c6sjjtQDabm63SxBBEbzRkWkfYru9gfkO8&s=10" }
 ];
+
 const cart = {};
+
 // ========== مدیریت مراحل ==========
 let currentStep = 1;
 function goToStep(step) {
@@ -850,6 +862,7 @@ function goToStep(step) {
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 // ========== رندر محصولات ==========
 function renderProducts() {
     const oilContainer = document.getElementById("oilProducts");
@@ -869,8 +882,8 @@ function renderProducts() {
             </div>
             <div>${p.name}</div>
             <div class="price-row">
-                <span class="price-original">${PRICE_ORIGINAL.toLocaleString("fa-IR")} تومان</span>
-                <span class="price-discount">${PRICE_DISCOUNT.toLocaleString("fa-IR")} تومان</span>
+                <span class="price-original">${p.originalPrice.toLocaleString("fa-IR")} تومان</span>
+                <span class="price-discount">${p.discountPrice.toLocaleString("fa-IR")} تومان</span>
             </div>
             <div class="product-actions">
                 ${qty > 0 ? `
@@ -888,6 +901,7 @@ function renderProducts() {
         else cakeContainer.appendChild(card);
     });
 }
+
 // ========== سبد ==========
 function addToCart(id) {
     const product = products.find(p => p.id === id);
@@ -912,8 +926,8 @@ function renderCart() {
     container.innerHTML = "";
     let sumOriginal = 0, sumFinal = 0, totalItems = 0;
     Object.values(cart).forEach(item => {
-        const original = PRICE_ORIGINAL * item.qty;
-        const final = PRICE_DISCOUNT * item.qty;
+        const original = item.product.originalPrice * item.qty;
+        const final = item.product.discountPrice * item.qty;
         sumOriginal += original;
         sumFinal += final;
         totalItems += item.qty;
@@ -949,6 +963,7 @@ function renderCart() {
     }
     renderProducts();
 }
+
 // ========== ساعت و تایمر (بدون تغییر منطق) ==========
 function updateClock() {
     const now = new Date();
@@ -985,6 +1000,7 @@ function initTimer() {
     tick();
 }
 initTimer();
+
 // ========== شرط دسته‌ها (بدون تغییر) ==========
 function checkCategories() {
     let hasOil = false, hasYogurt = false, hasCake = false;
@@ -999,6 +1015,7 @@ function checkCategories() {
     if (!hasCake) missing.push("کیک");
     return missing;
 }
+
 // ========== اتصال به شیت (بدون تغییر) ==========
 const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwfUSkQAUTg6ObzvT6rWQLRCZcTtsWEepySf7S76hTXqx4rxd3KET65eSCdMXazgZIf/exec";
 async function saveOrderOnline(order) {
@@ -1021,6 +1038,7 @@ let receiptBase64 = "";
 let receiptFileName = "";
 let receiptMimeType = "";
 let isSubmittingFinal = false;
+
 // فشرده‌سازی رسید (بدون تغییر)
 function compressReceiptImage(file) {
     return new Promise((resolve, reject) => {
@@ -1052,6 +1070,7 @@ function compressReceiptImage(file) {
         reader.readAsDataURL(file);
     });
 }
+
 // محدود کردن موبایل
 const mobileInput = document.getElementById("customerMobile");
 if (mobileInput) {
@@ -1059,6 +1078,7 @@ if (mobileInput) {
         this.value = this.value.replace(/[^\d۰-۹]/g, "").slice(0, 11);
     });
 }
+
 // ========== دکمه‌های ناوبری مراحل ==========
 document.getElementById("btnGoCart").addEventListener("click", function() {
     if (Object.keys(cart).length === 0) {
@@ -1090,6 +1110,7 @@ document.getElementById("btnNewOrder").addEventListener("click", function() {
     renderCart();
     goToStep(1);
 });
+
 // ========== صدور فاکتور ==========
 document.getElementById("btnSubmitOrder").addEventListener("click", function() {
     if (Object.keys(cart).length === 0) {
@@ -1119,6 +1140,7 @@ document.getElementById("btnSubmitOrder").addEventListener("click", function() {
     generateInvoice(name, mobile, nationalId);
     goToStep(3);
 });
+
 function generateInvoice(name, mobile, nationalId) {
     const now = new Date();
     const dateStr = now.toLocaleDateString("fa-IR");
@@ -1135,9 +1157,11 @@ function generateInvoice(name, mobile, nationalId) {
     let totalProfit = 0, totalAmount = 0, originalTotal = 0;
     Object.values(cart).forEach(item => {
         const qty = item.qty;
-        const profit = (PRICE_ORIGINAL - PRICE_DISCOUNT) * qty;
-        const original = PRICE_ORIGINAL * qty;
-        const finalPrice = PRICE_DISCOUNT * qty;
+        const orig = item.product.originalPrice;
+        const disc = item.product.discountPrice;
+        const profit = (orig - disc) * qty;
+        const original = orig * qty;
+        const finalPrice = disc * qty;
         totalProfit += profit;
         originalTotal += original;
         totalAmount += finalPrice;
@@ -1145,8 +1169,8 @@ function generateInvoice(name, mobile, nationalId) {
         tr.innerHTML = `
             <td>${item.product.name}</td>
             <td>${qty.toLocaleString("fa-IR")}</td>
-            <td>${PRICE_ORIGINAL.toLocaleString("fa-IR")}</td>
-            <td>${PRICE_DISCOUNT.toLocaleString("fa-IR")}</td>
+            <td>${orig.toLocaleString("fa-IR")}</td>
+            <td>${disc.toLocaleString("fa-IR")}</td>
             <td>${profit.toLocaleString("fa-IR")}</td>
         `;
         tbody.appendChild(tr);
@@ -1159,9 +1183,9 @@ function generateInvoice(name, mobile, nationalId) {
         name: item.product.name,
         category: item.product.category,
         quantity: item.qty,
-        originalPrice: PRICE_ORIGINAL,
-        discountPrice: PRICE_DISCOUNT,
-        profit: (PRICE_ORIGINAL - PRICE_DISCOUNT) * item.qty
+        originalPrice: item.product.originalPrice,
+        discountPrice: item.product.discountPrice,
+        profit: (item.product.originalPrice - item.product.discountPrice) * item.qty
     }));
     currentOrder = {
         invoiceNumber: String(invoiceNumber),
@@ -1192,6 +1216,7 @@ function generateInvoice(name, mobile, nationalId) {
     finalButton.style.background = "";
     document.getElementById("paymentAmount").innerText = totalAmount.toLocaleString("fa-IR") + " تومان";
 }
+
 // ========== آپلود رسید ==========
 document.getElementById("receiptFile").addEventListener("change", async function(e) {
     const file = e.target.files && e.target.files[0];
@@ -1227,6 +1252,7 @@ document.getElementById("receiptFile").addEventListener("change", async function
         finalButton.textContent = "✅ ثبت نهایی سفارش";
     }
 });
+
 // ========== ثبت نهایی ==========
 document.getElementById("btnFinalSubmit").addEventListener("click", async function() {
     if (isSubmittingFinal) return;
@@ -1259,6 +1285,7 @@ document.getElementById("btnFinalSubmit").addEventListener("click", async functi
         alert("ثبت آنلاین سفارش انجام نشد. اینترنت و اتصال Google Sheets را بررسی کنید و دوباره بزنید.");
     }
 });
+
 // ========== پرینت PDF ==========
 function sanitizePdfName(name) {
     name = (name || "فاکتور").trim();
@@ -1279,6 +1306,7 @@ function printInvoicePDF() {
         setTimeout(() => { document.title = oldTitle; }, 1500);
     }, 100);
 }
+
 // شروع
 renderProducts();
 renderCart();
