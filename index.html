@@ -44,15 +44,15 @@ body {
 .float-icon {
     position: absolute;
     font-size: 22px;
-    opacity: 0.18;
+    opacity: 0.28;
     color: var(--primary);
     animation: floatUp linear infinite;
     user-select: none;
 }
 @keyframes floatUp {
     0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-    10%  { opacity: 0.20; }
-    90%  { opacity: 0.20; }
+    10%  { opacity: 0.32; }
+    90%  { opacity: 0.32; }
     100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
 }
 
@@ -758,7 +758,6 @@ body {
 <script>
 // ========== انیمیشن شناور (شلوغ‌تر) ==========
 function createFloatIcons() {
-    const container = document.getElementById("floatIcons");
     const icons = ["٪", "🛒", "📦", "🏷️", "🛍️", "💰", "🎁", "🧈", "🥛", "🍰"];
     const COUNT = 22;
     for (let i = 0; i < COUNT; i++) {
@@ -1268,6 +1267,7 @@ function sanitizePdfName(name) {
     name = name.replace(/[\\/:*?"<>|]/g, " ").replace(/\s+/g, " ").trim();
     return name || "فاکتور";
 }
+
 function printInvoicePDF() {
     const invoiceCard = document.getElementById("invoiceCard");
     if (!invoiceCard) return;
